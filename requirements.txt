@@ -47,7 +47,6 @@ qrcode==5.3
 raven==5.32.0
 reportlab==3.3.0
 requests==2.11.1
-setuptools==28.6.1
 suds-jurko==0.6
 traceback2==1.4.0
 unicodecsv==0.14.1
