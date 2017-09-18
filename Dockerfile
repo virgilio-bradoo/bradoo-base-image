@@ -1,4 +1,4 @@
-FROM odoo:10.0 
+FROM odoo:10.0
 MAINTAINER BradooTech <virgilio.santos@bradootech.com>
 
 USER root
@@ -9,6 +9,19 @@ RUN set -x; \
     build-essential bzr bzrtools libjpeg-dev libffi-dev libldap2-dev ssh \
     libpq-dev libsasl2-dev libxml2-dev libxmlsec1-dev libxslt-dev git \
     python-dev zlib1g-dev libjpeg62-turbo-dev npm mercurial wget telnet
+
+RUN set -x; \
+    apt-get purge -y wkhtmltox
+
+RUN wget https://downloads.wkhtmltopdf.org/0.12/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz
+
+RUN tar -xvf wkhtmltox*.tar.xz \
+    && cd wkhtmltox \
+    && cp bin/wkhtmltopdf /usr/bin/wkhtmltopdf  \
+    && cp bin/wkhtmltoimage /usr/bin/wkhtmltoimage \
+    && cp -r include/wkhtmltox /usr/include/ \
+    && cp lib/libwkhtmltox.so* /usr/lib/  \
+    && cp share/man/man1/wkhtmlto* /usr/share/man/man1
 
 RUN set -x; \
     apt-get install -y --no-install-recommends \
